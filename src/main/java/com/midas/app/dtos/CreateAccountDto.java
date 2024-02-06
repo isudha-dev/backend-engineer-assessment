@@ -1,4 +1,4 @@
-package com.midas.dtos;
+package com.midas.app.dtos;
 
 import java.util.UUID;
 import lombok.Getter;

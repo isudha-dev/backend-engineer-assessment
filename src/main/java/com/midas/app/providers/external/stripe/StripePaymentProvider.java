@@ -36,7 +36,7 @@ public class StripePaymentProvider implements PaymentProvider {
    */
   @Override
   public Account createAccount(CreateAccount details) {
-    Stripe.apiKey = System.getenv("STRIPE_API_KEY");
+    Stripe.apiKey = configuration.getApiKey(); // System.getenv("STRIPE_API_KEY");
 
     CustomerCreateParams params =
         CustomerCreateParams.builder()

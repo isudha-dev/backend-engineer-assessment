@@ -1,7 +1,7 @@
-package com.midas.apis;
+package com.midas.app.apis;
 
-import com.midas.dtos.AccountDto;
-import com.midas.dtos.CreateAccountDto;
+import com.midas.app.dtos.AccountDto;
+import com.midas.app.dtos.CreateAccountDto;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 

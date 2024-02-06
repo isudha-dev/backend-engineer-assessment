@@ -6,21 +6,26 @@ import io.temporal.activity.ActivityOptions;
 import io.temporal.common.RetryOptions;
 import io.temporal.workflow.Workflow;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CreateAccountWorkflowImpl implements CreateAccountWorkflow {
 
-    private final RetryOptions retryoptions = RetryOptions.newBuilder().setInitialInterval(Duration.ofSeconds(1))
-            .setMaximumInterval(Duration.ofSeconds(100)).setBackoffCoefficient(2).setMaximumAttempts(50000).build();
-    private final ActivityOptions options = ActivityOptions.newBuilder().setStartToCloseTimeout(Duration.ofSeconds(30))
-            .setRetryOptions(retryoptions).build();
+  private final RetryOptions retryoptions =
+      RetryOptions.newBuilder()
+          .setInitialInterval(Duration.ofSeconds(1))
+          .setMaximumInterval(Duration.ofSeconds(100))
+          .setBackoffCoefficient(2)
+          .setMaximumAttempts(50000)
+          .build();
+  private final ActivityOptions options =
+      ActivityOptions.newBuilder()
+          .setStartToCloseTimeout(Duration.ofSeconds(30))
+          .setRetryOptions(retryoptions)
+          .build();
 
-    private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, options);
+  private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, options);
 
-    @Override
-    public Account createAccount(Account details) {
-       return account.saveAccount(details);
-//       account.createPaymentAccount(details);
-    }
+  @Override
+  public Account createAccount(Account details) {
+    return account.saveAccount(details);
+  }
 }

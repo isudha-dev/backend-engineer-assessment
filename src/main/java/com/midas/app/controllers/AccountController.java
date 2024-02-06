@@ -1,11 +1,11 @@
 package com.midas.app.controllers;
 
-import com.midas.apis.AccountsApi;
+import com.midas.app.apis.AccountsApi;
+import com.midas.app.dtos.AccountDto;
+import com.midas.app.dtos.CreateAccountDto;
 import com.midas.app.mappers.Mapper;
 import com.midas.app.models.Account;
 import com.midas.app.services.AccountService;
-import com.midas.dtos.AccountDto;
-import com.midas.dtos.CreateAccountDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

@@ -1,7 +1,7 @@
 package com.midas.app.mappers;
 
+import com.midas.app.dtos.AccountDto;
 import com.midas.app.models.Account;
-import com.midas.dtos.AccountDto;
 import lombok.NonNull;
 
 public class Mapper {
