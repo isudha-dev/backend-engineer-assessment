@@ -10,6 +10,10 @@ public class AccountActivityImpl implements AccountActivity {
   StripeConfiguration stripeConfiguration;
   AccountService accountService;
 
+  public AccountActivityImpl(){
+
+  }
+
   public AccountActivityImpl(
       StripeConfiguration stripeConfiguration, AccountService accountService) {
     this.stripeConfiguration = stripeConfiguration;

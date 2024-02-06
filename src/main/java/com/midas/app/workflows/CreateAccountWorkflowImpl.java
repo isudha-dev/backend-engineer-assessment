@@ -11,36 +11,16 @@ import java.util.Map;
 
 public class CreateAccountWorkflowImpl implements CreateAccountWorkflow {
 
-  private static final String WITHDRAW = "Withdraw";
-  private final RetryOptions retryoptions =
-      RetryOptions.newBuilder()
-          .setInitialInterval(Duration.ofSeconds(1))
-          .setMaximumInterval(Duration.ofSeconds(100))
-          .setBackoffCoefficient(2)
-          .setMaximumAttempts(500)
-          .build();
-  private final ActivityOptions defaultActivityOptions =
-      ActivityOptions.newBuilder()
-          .setStartToCloseTimeout(Duration.ofSeconds(5))
-          .setRetryOptions(retryoptions)
-          .build();
-  private final Map<String, ActivityOptions> perActivityMethodOptions =
-      new HashMap<String, ActivityOptions>() {
-        {
-          put(
-              WITHDRAW,
-              ActivityOptions.newBuilder().setHeartbeatTimeout(Duration.ofSeconds(5)).build());
-        }
-      };
-  private final AccountActivity account =
-      Workflow.newActivityStub(
-          AccountActivity.class, defaultActivityOptions, perActivityMethodOptions);
+    private final RetryOptions retryoptions = RetryOptions.newBuilder().setInitialInterval(Duration.ofSeconds(1))
+            .setMaximumInterval(Duration.ofSeconds(100)).setBackoffCoefficient(2).setMaximumAttempts(50000).build();
+    private final ActivityOptions options = ActivityOptions.newBuilder().setStartToCloseTimeout(Duration.ofSeconds(30))
+            .setRetryOptions(retryoptions).build();
 
-  @Override
-  public Account createAccount(Account details) {
+    private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, options);
 
-    Account newAccount = account.saveAccount(details);
-    account.createPaymentAccount(details);
-    return newAccount;
-  }
+    @Override
+    public Account createAccount(Account details) {
+       return account.saveAccount(details);
+//       account.createPaymentAccount(details);
+    }
 }
