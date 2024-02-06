@@ -16,14 +16,11 @@ public class AccountActivityImpl implements AccountActivity {
     StripeConfiguration stripeConfiguration = new StripeConfiguration();
 
     StripePaymentProvider stripePaymentProvider = new StripePaymentProvider(stripeConfiguration);
-    Account newPaymentAccount =
-        stripePaymentProvider.createAccount(
-            new CreateAccount(
-                account.getId().toString(),
-                account.getFirstName(),
-                account.getLastName(),
-                account.getEmail()));
-
-    return newPaymentAccount;
+    return stripePaymentProvider.createAccount(
+        new CreateAccount(
+            account.getId().toString(),
+            account.getFirstName(),
+            account.getLastName(),
+            account.getEmail()));
   }
 }

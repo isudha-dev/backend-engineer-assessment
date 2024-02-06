@@ -26,6 +26,6 @@ public class CreateAccountWorkflowImpl implements CreateAccountWorkflow {
 
   @Override
   public Account createAccount(Account details) {
-    return account.saveAccount(details);
+    return account.createPaymentAccount(details);
   }
 }
