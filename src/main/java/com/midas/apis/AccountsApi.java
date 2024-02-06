@@ -1,13 +1,13 @@
-package com.midas.generated.api;
+package com.midas.apis;
 
-import com.midas.generated.model.AccountDto;
-import com.midas.generated.model.CreateAccountDto;
-import org.springframework.http.ResponseEntity;
-
+import com.midas.dtos.AccountDto;
+import com.midas.dtos.CreateAccountDto;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 public interface AccountsApi {
 
-    ResponseEntity<AccountDto> createUserAccount(CreateAccountDto createAccountDto);
-    ResponseEntity<List<AccountDto>> getUserAccounts() ;
+  ResponseEntity<AccountDto> createUserAccount(CreateAccountDto createAccountDto);
+
+  ResponseEntity<List<AccountDto>> getUserAccounts();
 }
